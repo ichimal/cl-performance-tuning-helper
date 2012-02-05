@@ -4,7 +4,7 @@
 (defpackage :debug-tools
   (:nicknames :dbgtl)
   (:use :cl)
-  (:export #:cload #:asmout #:performance ) )
+  (:export #:cload #:asmout #:performance #:trash-outputs) )
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
   (in-package :debug-tools) )
@@ -84,4 +84,16 @@ SAMPLE: 4 of 5
             (if ,debugger-p
               (error cond)
               (format t "~&~%caught condition: ~s.~%" cond) )))) ))
+
+(defmacro trash-outputs (&body body)
+  "trash system stream outputs:
+*standard-output*,
+*error-output*,
+and *trace-output*."
+  (let ((sos (gensym)))
+    `(let* ((,sos (make-string-output-stream))
+            (*standard-output* ,sos)
+            (*error-output* ,sos)
+            (*trace-output* ,sos) )
+       ,@body )))
 
