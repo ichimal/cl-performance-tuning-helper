@@ -14,4 +14,8 @@
   :description "simple debug tools"
   :components ((:file "dbgtl")) )
 
+(defmethod perform ((op test-op) (compo (eql (find-system :debug-tools))))
+  (declare (ignore op compo))
+  (operate 'load-op :debug-tools-test)
+  (operate 'test-op :debug-tools-test :force t) )
 
