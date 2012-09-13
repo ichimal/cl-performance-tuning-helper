@@ -7,7 +7,7 @@
 
 (defsystem debug-tools
   :name "debug-tools"
-  :version "0.2.3"
+  :version "0.3.0"
   :maintainer "SUZUKI Shingo"
   :author "SUZUKI Shingo"
   :licence "MIT"
