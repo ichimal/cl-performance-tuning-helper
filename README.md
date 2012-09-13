@@ -35,9 +35,9 @@ After all, displays execution information by `TIME` macro.
 
 When a condition has been signaled;
 
-- when `debugger-p` is `nil`:  
+- when *debugger-p* is `nil`:  
   `DEBGTL:PERFORMANCE` returns `nil`.
-- when `debugger-p` is non-`nil`:  
+- when *debugger-p* is non-`nil`:  
   invoke debugger for any kind of conditions.
 
 e.g. 2
