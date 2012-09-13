@@ -8,9 +8,19 @@ load a file after compile.
 e.g. `(dbgtl:cload "src")` for compile and load "`src.lisp`".
 
 ### Function `ASMOUT`:
-save `DISASSEMBLE` result into a file.
+save `DISASSEMBLE` result for given function into a file. You can specify saving filename optionally.
 
-e.g. `(dbgtl:asmout 'dbgtl:asmout)` saves `DISASSEMBLE` result into "`asmout.asm`" file.
+When a function is given as an symbol s.t. `'SOME-FUNCTION`, the default filename is a lowercase version of the symbol name with "`.asm`" suffix.
+
+e.g. `(dbgtl:asmout 'SOME-PACKAGE:SOME-FUNCTION)`
+
+saves `DISASSEMBLE` result for `#'SOME-PACKAGE:SOME-FUNCTION` into "`some-function.asm`".
+
+When a function is given as a lambda expression or a function itself (i.e. `#'SOME-FUNCTION` or `(SYMBOL-FUNCTION 'SOME-FUNCTION)`), you *must* specify filename explicitly.
+
+e.g. `(dbgtl:asmout (lambda (x y) (+ x y)) "binary-add.asm")`
+
+saves `DISASSEMBLE` result of a given lambda expression into "`binary-add.asm`". In this case, suffix ("`.asm`") is not appended automatically.
 
 ### Macro `PERFORMANCE`:
 simple performance checker.

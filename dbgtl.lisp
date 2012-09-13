@@ -16,18 +16,18 @@
     (unless failure-p
       (load path) )))
 
-(defun asmout (fsym &optional path)
+(defun asmout (fun &optional path)
   "output DISASSEMBLE result into a file"
-  (declare (type symbol fsym)
-           (ftype (function (symbol) boolean) asmout) )
-  (let ((eff-path (or path (string-downcase (format nil "~a.asm" fsym)))))
+  (unless (or path (symbolp fun))
+    (error "ASMOUT: You must specify filename explicitly for ~s~%" fun) )
+  (let ((eff-path (or path (string-downcase (format nil "~a.asm" fun)))))
     (format t "~&try to output disassemble result into ~a ..." eff-path)
     (with-open-file (fn eff-path
                         :direction :output
                         :if-does-not-exist :create
                         :if-exists :supersede )
       (let ((*standard-output* fn))
-        (disassemble fsym) )))
+        (disassemble fun) )))
   (format t " done.~%")
   t )
 
