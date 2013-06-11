@@ -1,13 +1,13 @@
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (in-package #:debug-tools-asd) )
+  (in-package #:cl-performance-tuning-helper-asd) )
 
-(defpackage :debug-tools
-  (:nicknames :dbgtl)
+(defpackage :cl-performance-tuning-helper
+  (:nicknames :pth)
   (:use :cl)
   (:export #:cload #:asmout #:performance #:trash-outputs) )
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (in-package :debug-tools) )
+  (in-package :cl-performance-tuning-helper) )
 
 (defun cload (path)
   "load after compile a file"
@@ -49,7 +49,7 @@ function: a symbol of function or a lambda expression.
 
 e.g.
 (let ((max 5))
-  (dbgctl:performance (i max) nil (format t \"SAMPLE: ~d of ~d~%\" i max)) )
+  (pth:performance (i max) nil (format t \"SAMPLE: ~d of ~d~%\" i max)) )
 => t
 ---- 
 ;;; performance test for FORMAT MAX times

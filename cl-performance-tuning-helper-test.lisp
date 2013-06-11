@@ -1,12 +1,12 @@
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (in-package #:debug-tools-asd) )
+  (in-package #:cl-performance-tuning-helper-asd) )
 
-(defpackage :debug-tools-test
-  (:use :cl :dbgtl :rt)
+(defpackage :cl-performance-tuning-helper-test
+  (:use :cl :pth :rt)
   (:import-from :rt #:*compile-tests* #:*expected-failures*) )
 
 (eval-when (:load-toplevel :compile-toplevel :execute)
-  (in-package :debug-tools-test) )
+  (in-package :cl-performance-tuning-helper-test) )
 
 (deftest performance.1
   (trash-outputs (performance 100 nil (identity nil)))
