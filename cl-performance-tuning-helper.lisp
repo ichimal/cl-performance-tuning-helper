@@ -91,7 +91,7 @@ SAMPLE: 4 of 5
 *error-output*,
 and *trace-output*."
   (let ((sos (gensym)))
-    `(let* ((,sos (make-string-output-stream))
+    `(let* ((,sos (make-broadcast-stream))
             (*standard-output* ,sos)
             (*error-output* ,sos)
             (*trace-output* ,sos) )
